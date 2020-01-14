@@ -70,6 +70,58 @@
     ON a.power = b.power AND a.min = b.coins_needed
     ORDER BY a.power DESC, a.age DESC
 
+2020-01-14 without Window Function
+
+왜 MAX(w.power) 가 되야하는지 모르겠음...
+
+    SELECT b.id
+         , a.age
+         , a.min
+         , a.power
+    FROM (
+    SELECT wp.age age
+         , MIN(w.coins_needed) min
+         , MAX(w.power) power
+    FROM Wands w
+    INNER JOIN Wands_Property wp
+    ON w.code = wp.code
+    WHERE wp.is_evil = 0
+    GROUP BY w.power, wp.age ) a
+    
+    INNER JOIN (
+    SELECT w2.id id
+         , wp2.age age
+         , w2.coins_needed coins_needed
+         , w2.power power
+    FROM Wands w2
+    INNER JOIN Wands_Property wp2
+    ON w2.code = wp2.code
+    WHERE wp2.is_evil = 0) b
+    ON a.age = b.age 
+    AND a.min = b.coins_needed
+    AND a.power = b.power
+    ORDER BY a.power DESC, a.age DESC
+
+2020-01-14 with Window Function (Oracle)
+
+    SELECT a.id
+         , a.age
+         , a.coins_needed
+         , a.power
+    FROM (
+        SELECT w.id
+         , w.coins_needed
+         , wp.age
+         , w.power
+         , row_number() OVER (PARTITION BY age, power ORDER BY w.coins_needed ASC) row_num
+    FROM Wands w
+    INNER JOIN Wands_Property wp
+    ON w.code = wp.code
+    WHERE wp.is_evil = 0) a
+    WHERE row_num = 1
+    ORDER BY a.power DESC, a.age DESC
+    ;
+
 Discussion with window function
 
     SELECT A.id, A.age, A.coins_needed, A.power 
