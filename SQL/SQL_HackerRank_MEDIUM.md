@@ -1,4 +1,4 @@
-# SQL MODE MEDIUM
+# SQL HackerRank MEDIUM
 
 ### New Companies
 
@@ -170,15 +170,94 @@ Discussion without window function
 
 ### Top Competitors
 
-    SELECT h.hacker_id, h.name
-    FROM challenges c
+    		SELECT h.hacker_id, h.name
+    			FROM challenges c
     INNER JOIN submissions s
-    ON c.challenge_id = s.challenge_id
+    				ON c.challenge_id = s.challenge_id
     INNER JOIN Hackers h
-    ON s.hacker_id = h.hacker_id
+    				ON s.hacker_id = h.hacker_id
     INNER JOIN difficulty d
-    ON c.difficulty_level = d.difficulty_level
-    WHERE d.score = s.score
+    				ON c.difficulty_level = d.difficulty_level
+    		 WHERE d.score = s.score
+    	GROUP BY h.hacker_id, h.name
+    		HAVING COUNT(h.hacker_id) > 1
+    	ORDER BY COUNT(h.hacker_id) DESC, h.hacker_id ASC
+
+### Contest Leaderboard
+
+예전에 입력해둔 코드
+
+    SELECT df.hacker_id, h.name, sum(df.scr)
+    FROM 
+        (
+        SELECT s.hacker_id, s.challenge_id, MAX(s.score) AS scr
+        FROM Submissions s
+        GROUP BY s.hacker_id, s.challenge_id
+        ) AS df INNER JOIN hackers AS h ON h.hacker_id = df.hacker_id
+    
+    GROUP BY df.hacker_id, h.name
+    HAVING SUM(df.scr) > 0
+    ORDER BY SUM(df.scr) DESC, df.hacker_id
+
+2020-01-15
+
+    	SELECT a.hacker_id, a.name, SUM(score) AS total_score
+    		FROM (
+    					SELECT h.hacker_id, h.name, s.challenge_id, MAX(score) score
+    						FROM hackers h
+    			INNER JOIN submissions s
+    							ON h.hacker_id = s.hacker_id
+    				GROUP BY h.hacker_id, h.name, s.challenge_id
+    					) a
+    GROUP BY a.hacker_id, a.name
+    	HAVING total_score > 0
+    ORDER BY total_score DESC, a.hacker_id ASC
+
+### Challenges
+
+예전에 써둔 코드
+
+    SELECT c.hacker_id, h.name, COUNT(c.challenge_id) as C
+    FROM challenges c JOIN hackers h 
+    ON h.hacker_id = c.hacker_id
+    GROUP BY c.hacker_id, h.name
+    HAVING C = (SELECT MAX(cnt)
+    FROM (
+        SELECT hacker_id, COUNT(challenge_id) cnt
+    FROM challenges
+    GROUP BY hacker_id
+    ) df)
+    
+    UNION
+    
+    SELECT c.hacker_id, h.name, COUNT(c.challenge_id) as C
+    FROM challenges c JOIN hackers h ON h.hacker_id = c.hacker_id
+    GROUP BY c.hacker_id, h.name
+    HAVING (
+        SELECT COUNT(cnt) 
+        FROM (
+            SELECT hacker_id, COUNT(challenge_id) cnt
+            FROM challenges
+            GROUP BY hacker_id
+        ) df2
+    ) = 1
+
+2020-01-05 Trying
+
+    SELECT h.hacker_id, h.name, total_number_of_challenges
+    FROM (
+        SELECT h.hacker_id, h.name, COUNT(c.challenge_id) AS total_number_of_challenges
+    FROM hackers h
+    INNER JOIN challenges c
+    ON h.hacker_id = c.hacker_id
     GROUP BY h.hacker_id, h.name
-    HAVING COUNT(h.hacker_id) > 1
-    ORDER BY COUNT(h.hacker_id) DESC, h.hacker_id ASC
+    ORDER BY total_number_of_challenges DESC, hacker_id
+    ) a
+    INNER JOIN ( 
+    SELECT total_number_of_challeges, COUNT(hacker_id) AS number_of_hackers
+    FROM a
+    GROUP BY total_number_of_challenges
+    HAVING total_number_of_challenges > number_of_hackers
+    ) b
+    ON a.total_number_of_challenges = b.total_number_of_challenges
+    ORDER BY total_number_of_challenges DESC
