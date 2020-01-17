@@ -1,4 +1,4 @@
-# SQL MODE EASY
+# SQL HackerRank EASY
 
 ### Asian Population
 
