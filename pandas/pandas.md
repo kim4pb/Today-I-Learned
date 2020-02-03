@@ -11,6 +11,14 @@ timedelta to histogram
     series_of_timedelta / pd.Timedelta(hours=1)
     series_of_timedelta / pd.Timedelta(minutes=1)
 
+weekday name
+
+    *datetime*.dt.year
+    *datetime*.dt.month
+    *datetime*.dt.day
+    *datetime*.dt.dayofweek # 0, 1, 2, 3, 4, 5, 6 ( 0 : Monday, 1 : Tuesday )
+    *datetime*.dt.weekday_name # e.g. Tuesday
+
 # Type
 
 check if NoneType
