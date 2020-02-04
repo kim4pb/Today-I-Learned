@@ -4,6 +4,12 @@
 
     series.quantile(0.90)
 
+# contain strings
+
+`*string*.isin( *series* )` : string 이 series 안에 포함되어 있는지 ( `True` `False` ) 출력해준다 
+
+`*series*.str.contains(*string*)` : string 이 series 안에 포함되어 있는지 ( `True` `False` ) 출력해준다
+
 # Datetime, Timestamp, Timedelta
 
 timedelta to histogram
@@ -42,6 +48,6 @@ cf. 그룹별 n 번째 행 가져오기
     g = df.groupby('id')
     df[g.cumcount() == n - 1]
 
-# Basic
+# ETC
 
 Jupiter notebook 에서 줄바꿈할 때 `\`
