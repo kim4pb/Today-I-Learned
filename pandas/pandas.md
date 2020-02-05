@@ -8,6 +8,10 @@
 
 `*string*.isin( *series* )` : string 이 series 안에 포함되어 있는지 ( `True` `False` ) 출력해준다 
 
+`cf.` string 이 series 안에 포함되어 있지 않은 경우만 출력하고 싶으면
+
+`*string*.isin(*series*) == False`
+
 `*series*.str.contains(*string*)` : string 이 series 안에 포함되어 있는지 ( `True` `False` ) 출력해준다
 
 # Datetime, Timestamp, Timedelta
