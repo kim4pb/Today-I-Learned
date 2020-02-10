@@ -35,6 +35,19 @@ check if NoneType
 
     x == type(None)
 
+NoneType Object 다루기
+
+    for i in event_applications_for_merge['timestamps']:
+        if isinstance(i, str):
+            if 'step4' in literal_eval(i).keys():
+                steps.append('step4')
+            elif 'step3' in literal_eval(i).keys():
+                steps.append('step3')
+            elif 'step2' in literal_eval(i).keys():
+                steps.append('step2')
+            elif 'step1' in literal_eval(i).keys():
+                steps.append('step1')
+
 check if np.nan
 
     x.isnull()
