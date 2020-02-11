@@ -29,6 +29,10 @@ weekday name
     *datetime*.dt.dayofweek # 0, 1, 2, 3, 4, 5, 6 ( 0 : Monday, 1 : Tuesday )
     *datetime*.dt.weekday_name # e.g. Tuesday
 
+today variable
+
+    today = pd.Timestamp("today").strftime("%Y-%m-%d")
+
 # Type
 
 check if NoneType
