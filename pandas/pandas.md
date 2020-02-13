@@ -71,7 +71,8 @@ cf. 그룹별 n 번째 행 가져오기
 
 string 으로 들어있는 dictionary 를 dict type 으로 바꾸기
 
- `literal_eval(*string_type_dict*)`
+    from ast import literal_eval
+    literal_eval(*string_type_dict*)
 
 string 으로 들어있는 dictionary series  ( None 값 포함 ) 의 값들을 dict type 으로 바꾸기
 
