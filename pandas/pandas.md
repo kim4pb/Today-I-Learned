@@ -58,7 +58,7 @@ check if np.nan
 
 # groupby aggregation
 
- `.count()` 는 Null 값을 제외한 모든 값을 세어준다. 중복값 포함
+ `.count()` 는 Null 값을 제외한 모든 값을 세어준다. 중복값 포함 `cf` `.value_counts()`
 
 `.nunique()` 는 중복값을 제외한 값을 세어준다
 
@@ -68,6 +68,17 @@ cf. 그룹별 n 번째 행 가져오기
 
     g = df.groupby('id')
     df[g.cumcount() == n - 1]
+
+string 으로 들어있는 dictionary 를 dict type 으로 바꾸기
+
+ `literal_eval(*string_type_dict*)`
+
+string 으로 들어있는 dictionary series  ( None 값 포함 ) 의 값들을 dict type 으로 바꾸기
+
+    input_info = []
+    for i in event_applications['information']:
+         if isinstance(i, str):
+              input_info.append(literal_eval(i))
 
 # ETC
 
