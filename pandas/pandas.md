@@ -81,6 +81,11 @@ string 으로 들어있는 dictionary series  ( None 값 포함 ) 의 값들을 
          if isinstance(i, str):
               input_info.append(literal_eval(i))
 
+최대공약수 찾기
+
+    from math import gcd
+    gcd(5, 10)
+
 # ETC
 
 Jupiter notebook 에서 줄바꿈할 때 `\`
