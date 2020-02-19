@@ -86,6 +86,12 @@ string 으로 들어있는 dictionary series  ( None 값 포함 ) 의 값들을 
     from math import gcd
     gcd(5, 10)
 
+LAG
+
+  `*DataFrame*.shift(1)` : 1 행 앞의 값
+
+  `*DataFrame*.shift(-1)` : 1 행 뒤의 값
+
 # ETC
 
 Jupiter notebook 에서 줄바꿈할 때 `\`
