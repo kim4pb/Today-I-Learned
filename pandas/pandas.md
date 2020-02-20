@@ -4,6 +4,12 @@
 
     series.quantile(0.90)
 
+DataFrame 수치정보 요약
+
+*`DataFrame*.describe()`
+
+*`DataFrame*.describe(percentiles=*percentile_list*)` : 보고싶은 퍼센티지를 지정해줄 수 있음
+
 # contain strings
 
 `*string*.isin( *series* )` : string 이 series 안에 포함되어 있는지 ( `True` `False` ) 출력해준다 
