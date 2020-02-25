@@ -20,6 +20,10 @@ DataFrame 수치정보 요약
 
 `*series*.str.contains(*string*)` : string 이 series 안에 포함되어 있는지 ( `True` `False` ) 출력해준다
 
+string concat
+
+`''.join(*list*)`
+
 # Datetime, Timestamp, Timedelta
 
 timedelta to histogram
