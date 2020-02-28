@@ -4,6 +4,11 @@
 
     series.quantile(0.90)
 
+quantile 역함수 inverse function
+
+    from scipy import stats
+    stats.percentileofscore(data_range, input_data)
+
 DataFrame 수치정보 요약
 
 *`DataFrame*.describe()`
