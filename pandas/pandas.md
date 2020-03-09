@@ -84,6 +84,10 @@ cf. 그룹별 n 번째 행 가져오기
     g = df.groupby('id')
     df[g.cumcount() == n - 1]
 
+dictionary 두개 합치기
+
+    dict(dict2, **dict1)
+
 string 으로 들어있는 dictionary 를 dict type 으로 바꾸기
 
     from ast import literal_eval
