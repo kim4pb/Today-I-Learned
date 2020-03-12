@@ -111,6 +111,16 @@ LAG
 
   `*DataFrame*.shift(-1)` : 1 행 뒤의 값
 
+리스트 원소 세기
+
+    # 리스트의 원소가 숫자나 문자일 때만 가능
+    from collections import Counter
+    Counter([set(x) for x in list])
+    
+    # 리스트의 원소가 set, list일 때도 가능
+    from itertools import groupby
+    [len(list(group)) for key, group in groupby([set(x) for x in list])]
+
 # ETC
 
 Jupiter notebook 에서 줄바꿈할 때 `\`
